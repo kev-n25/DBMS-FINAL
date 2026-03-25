@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Login({ switchToSignup }) {
+function Login({ switchToSignup, onLoginSuccess }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -12,7 +12,11 @@ function Login({ switchToSignup }) {
         { method: 'POST' }
       );
       const data = await response.text();
-      setMessage(data);
+      if (data === 'Login successful!') {
+        onLoginSuccess(username);
+      } else {
+        setMessage(data);
+      }
     } catch (error) {
       setMessage('Error connecting to server!');
     }
@@ -22,7 +26,6 @@ function Login({ switchToSignup }) {
     <div style={styles.container}>
       <div style={styles.box}>
         <h2 style={styles.title}>Login</h2>
-
         <input
           style={styles.input}
           type="text"
@@ -30,7 +33,6 @@ function Login({ switchToSignup }) {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-
         <input
           style={styles.input}
           type="password"
@@ -38,13 +40,10 @@ function Login({ switchToSignup }) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-
         <button style={styles.button} onClick={handleLogin}>
           Login
         </button>
-
         {message && <p style={styles.message}>{message}</p>}
-
         <p style={styles.switchText}>
           Don't have an account?{' '}
           <span style={styles.link} onClick={switchToSignup}>
@@ -97,7 +96,7 @@ const styles = {
   },
   message: {
     textAlign: 'center',
-    color: '#4CAF50',
+    color: 'red',
     fontSize: '14px',
   },
   switchText: {
