@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Dashboard({ username, onLogout }) {
+function Dashboard({ username, onLogout, onProfile, onFindJobs }) {
   return (
     <div style={styles.container}>
       {/* Navbar */}
@@ -32,7 +32,9 @@ function Dashboard({ username, onLogout }) {
           <p style={styles.cardDesc}>
             Add your education, skills, and experience to get better job matches!
           </p>
-          <button style={{...styles.cardBtn, backgroundColor: '#4285F4'}}>
+          <button
+            style={{...styles.cardBtn, backgroundColor: '#4285F4'}}
+            onClick={onProfile}>
             View Profile
           </button>
         </div>
@@ -44,7 +46,9 @@ function Dashboard({ username, onLogout }) {
           <p style={styles.cardDesc}>
             Let our AI find the best jobs that match your skills and experience!
           </p>
-          <button style={{...styles.cardBtn, backgroundColor: '#4CAF50'}}>
+          <button
+            style={{...styles.cardBtn, backgroundColor: '#4CAF50'}}
+            onClick={onFindJobs}>
             Find Jobs
           </button>
         </div>
@@ -152,7 +156,6 @@ const styles = {
     width: '280px',
     textAlign: 'center',
     boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
-    transition: 'transform 0.2s',
   },
   cardIcon: {
     fontSize: '50px',
