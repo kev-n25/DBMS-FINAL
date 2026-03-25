@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
+import Profile from './components/Profile';
+import Jobs from './components/Jobs';
 import './App.css';
 
 function App() {
@@ -33,6 +35,20 @@ function App() {
         <Dashboard
           username={loggedInUser}
           onLogout={handleLogout}
+          onProfile={() => setCurrentPage('profile')}
+          onFindJobs={() => setCurrentPage('jobs')}
+        />
+      )}
+      {currentPage === 'profile' && (
+        <Profile
+          username={loggedInUser}
+          onBack={() => setCurrentPage('dashboard')}
+        />
+      )}
+      {currentPage === 'jobs' && (
+        <Jobs
+          username={loggedInUser}
+          onBack={() => setCurrentPage('dashboard')}
         />
       )}
     </div>
