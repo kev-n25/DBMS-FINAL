@@ -4,6 +4,7 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
 import Jobs from './components/Jobs';
+import Applications from './components/Applications';
 import './App.css';
 
 function App() {
@@ -23,10 +24,7 @@ function App() {
   return (
     <div className="App">
       {currentPage === 'login' && (
-        <Login
-          switchToSignup={() => setCurrentPage('signup')}
-          onLoginSuccess={handleLoginSuccess}
-        />
+        <Login switchToSignup={() => setCurrentPage('signup')} onLoginSuccess={handleLoginSuccess} />
       )}
       {currentPage === 'signup' && (
         <Signup switchToLogin={() => setCurrentPage('login')} />
@@ -37,19 +35,17 @@ function App() {
           onLogout={handleLogout}
           onProfile={() => setCurrentPage('profile')}
           onFindJobs={() => setCurrentPage('jobs')}
+          onApplications={() => setCurrentPage('applications')}
         />
       )}
       {currentPage === 'profile' && (
-        <Profile
-          username={loggedInUser}
-          onBack={() => setCurrentPage('dashboard')}
-        />
+        <Profile username={loggedInUser} onBack={() => setCurrentPage('dashboard')} />
       )}
       {currentPage === 'jobs' && (
-        <Jobs
-          username={loggedInUser}
-          onBack={() => setCurrentPage('dashboard')}
-        />
+        <Jobs username={loggedInUser} onBack={() => setCurrentPage('dashboard')} />
+      )}
+      {currentPage === 'applications' && (
+        <Applications username={loggedInUser} onBack={() => setCurrentPage('dashboard')} />
       )}
     </div>
   );

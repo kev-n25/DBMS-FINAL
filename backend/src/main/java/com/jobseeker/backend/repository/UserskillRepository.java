@@ -1,10 +1,12 @@
 package com.jobseeker.backend.repository;
 
-import com.jobseeker.backend.model.UserSkill;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.List;
+
+import com.jobseeker.backend.model.UserSkill;
 
 @Repository
 public interface UserSkillRepository extends JpaRepository<UserSkill, Integer> {

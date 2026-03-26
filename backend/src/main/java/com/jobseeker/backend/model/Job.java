@@ -20,4 +20,5 @@ public class Job {
     private String company;
     private String description;
     private String requiredEducation;
+    private String location;
 }

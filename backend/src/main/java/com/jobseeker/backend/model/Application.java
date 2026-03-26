@@ -13,29 +13,32 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "applications")
+public class Application {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(unique = true, nullable = false)
-    private String username;
-
-    @Column(unique = true, nullable = false)
-    private String email;
+    private int userId;
+    private int jobId;
 
     @Column(nullable = false)
-    private String passwordHash;
+    private String status;
 
-    private String location;
+    // Form fields
+    private String fullName;
+    private String phone;
+    private String education;
+    private String experience;
+    private String coverLetter;
 
     @Column(updatable = false)
-    private LocalDateTime createdAt;
+    private LocalDateTime appliedAt;
 
     @PrePersist
     protected void onCreate() {
-        createdAt = LocalDateTime.now();
+        appliedAt = LocalDateTime.now();
+        if (status == null) status = "Applied";
     }
 }
